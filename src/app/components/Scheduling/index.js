@@ -15,14 +15,19 @@ export default class Scheduling extends React.Component {
     localDateTime = [[],[]]
 
     handleDateChange = (date) => {
+        // handles date change
         this.props.onDateChange(date);
     }
 
     handleTimeChange = (time) => {
+        // handles time change
         this.props.onTimeChange(time);
     }
 
     dateAndTimeGen = (data) => {
+        /*
+            separates date and time from the DATE object
+        */
         let date_time = []
 
         // filtered array by mentor
@@ -41,13 +46,14 @@ export default class Scheduling extends React.Component {
             let split_item = item.split(" ")
             let localDate = split_item[0]
             let localTime = split_item[1]
-            //console.log("localTime, localDate", localTime, localDate)
+            
             this.localDateTime[0].push(localDate)
             this.localDateTime[1].push(localTime)
         })
     }
 
     componentDidUpdate(prevProps, prevState) {
+        // check for the props update
         if(this.props.data !== prevProps.data) {
             this.dateAndTimeGen(this.props.data)
         }
@@ -55,11 +61,10 @@ export default class Scheduling extends React.Component {
 
     timeExtract = () => {
         let times = []
-        this.localDateTime[0].forEach((i, index) => {
-            if (i === this.props.dateSelected) {
-            times.push(this.localDateTime[1][index])
-        }
-        })
+
+        // can be replaced with filter
+        this.localDateTime[0].forEach((i, index) => i === this.props.dateSelected ? times.push(this.localDateTime[1][index]) : null )
+
         return times
     }
 

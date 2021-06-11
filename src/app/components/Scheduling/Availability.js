@@ -9,11 +9,21 @@ export default class Availability extends React.Component {
     }
 
     appointmentExists = async(selectedTime) => {
+        /*
+            scenarios covered:
+                1. date exists => time exists => adds a new time to the particular index
+                2. date exists => time exists but the hour is same to what is already booked => rejects the update
+                3. date doesn't exist => pushes the new object for the particular mentor
+        */
         console.log("inside appointmentexists")
         return await api.getAppointmentByName(this.props.mentorSelected).then(res => {
             if (res) {
+
+                console.log("selected time is: ", selectedTime)
+
                 let date_time = res.data.data.date_time
-                let exists = date_time.some(i => i.date === this.props.dateSelected && i.time.some(t => t === selectedTime))
+                let exists = date_time.some(i => i.date === this.props.dateSelected 
+                    && i.time.some(t => t === selectedTime || t.split(":")[0] === selectedTime.split(":")[0] ))
                 console.log("exists vall", exists)
                 return exists
             } else {
@@ -28,6 +38,7 @@ export default class Availability extends React.Component {
     }
 
     handleTimeSelect = (e) => {
+        // handles the change of time
         this.props.onTimeChange(e.target.textContent)
 
         this.appointmentExists(e.target.textContent).then(exists => {
@@ -36,6 +47,7 @@ export default class Availability extends React.Component {
     }
 
     timeGen = () => {
+        // generates jsx for individual times
         return this.props.times.map(i => <div key={i} value={this.props.timeSelected} onClick={this.handleTimeSelect}>{i}</div>)
     }
 
@@ -43,6 +55,7 @@ export default class Availability extends React.Component {
         //const times = this.props.times
         return(
             <div>
+                <div>Select the time</div>
                 {this.timeGen()}
             </div>
         )

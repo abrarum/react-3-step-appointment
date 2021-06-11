@@ -3,6 +3,7 @@ import StepWizard from "react-step-wizard";
 import SelectMentor from './SelectMentor'
 import Scheduling from './Scheduling'
 import Confirmation from './Confirmation'
+import api from '../../api'
 
 export default class StepperBox extends React.Component{
     constructor(props) {
@@ -11,7 +12,7 @@ export default class StepperBox extends React.Component{
           data: [],
           mentorSelected: '',
           dateSelected: '',
-          timeSelected: ''
+          timeSelected: '',
         }
 
         this.baseState = this.state;
@@ -26,24 +27,25 @@ export default class StepperBox extends React.Component{
       }
 
       handleMentorChange = (mentorSelected) => {
+        // handles mentor change
         this.setState({ mentorSelected });
       }
 
       handleDateChange = (dateSelected) => {
+        // handles date change
         this.setState({ dateSelected });
       }
 
       handleTimeChange = (timeSelected) => {
+        //handles time chage
         this.setState({ timeSelected });
       }
 
-      fetchData = ()=> {
-        const url = "https://private-anon-6a5c3c80a7-cfcalendar.apiary-mock.com/mentors/1/agenda"
-            fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                this.setState({data})});
-                
+
+      fetchData = async()=> {
+        // fetches the appointment data from the api call
+        await api.fetchAppointments()
+        .then(response => this.setState({data: response.data}))   
       }
 
       componentDidMount() {
