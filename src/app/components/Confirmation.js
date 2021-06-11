@@ -6,7 +6,9 @@ export default class Confirmation extends React.Component {
     handleFormSubmit = async (e) => {
         e.preventDefault()
 
-        this.updateAppointment()
+        this.updateAppointment().then(() => {
+            window.location.reload();
+        })
     }
 
     updateAppointment = async () => {
@@ -14,7 +16,7 @@ export default class Confirmation extends React.Component {
         const payload = { name: mentorSelected, date_time: [ {date: dateSelected, time: [timeSelected]} ] }
 
         await api.updateAppointmentByName(mentorSelected, payload).then(res => {
-            window.alert(`Appointment updated successfully`)
+            window.alert(`Appointment booked successfully!`)
         })
     }
 

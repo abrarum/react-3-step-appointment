@@ -10,24 +10,28 @@ export default class Availability extends React.Component {
 
     appointmentExists = async(selectedTime) => {
         console.log("inside appointmentexists")
-        await api.getAppointmentByName(this.props.mentorSelected).then(res => {
-            console.log("status", res)
+        return await api.getAppointmentByName(this.props.mentorSelected).then(res => {
             if (res) {
-                console.log("res.data.data", res.data.data)
-                //console.log("details", appointment.date_time, selectedTime, this.props.dateSelected)
+                let date_time = res.data.data.date_time
+                let exists = date_time.some(i => i.date === this.props.dateSelected && i.time.some(t => t === selectedTime))
+                console.log("exists vall", exists)
+                return exists
             } else {
                 console.log("error")
-                return
+                return false
             }
-        }).catch(err => console.log("err in catch", err))
+        }).catch(err => {
+            console.log("err in catch", err)
+            return false
+        })
         
     }
 
-    handleTimeSelect = async (e) => {
-        this.props.onTimeChange(e.target.textContent);
+    handleTimeSelect = (e) => {
+        this.props.onTimeChange(e.target.textContent)
 
-        await this.appointmentExists(e.target.textContent).then(() => {
-            this.props.nextStep()
+        this.appointmentExists(e.target.textContent).then(exists => {
+            exists ? window.alert("Appointment already exists.") : this.props.nextStep()
         })
     }
 

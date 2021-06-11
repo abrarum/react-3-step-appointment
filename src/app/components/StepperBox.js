@@ -14,9 +14,15 @@ export default class StepperBox extends React.Component{
           timeSelected: ''
         }
 
+        this.baseState = this.state;
+
         this.handleMentorChange = this.handleMentorChange.bind(this);
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleTimeChange = this.handleTimeChange.bind(this);
+      }
+
+      reset = () => {
+        this.setState(this.baseState);
       }
 
       handleMentorChange = (mentorSelected) => {
