@@ -23,7 +23,7 @@ export default class Availability extends React.Component {
 
                 let date_time = res.data.data.date_time
                 let exists = date_time.some(i => i.date === this.props.dateSelected 
-                    && i.time.some(t => t === selectedTime || t.split(":")[0] === selectedTime.split(":")[0] ))
+                    && (i.time === selectedTime || i.time.split(":")[0] === selectedTime.split(":")[0]))
                 console.log("exists vall", exists)
                 return exists
             } else {

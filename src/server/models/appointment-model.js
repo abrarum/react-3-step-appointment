@@ -6,9 +6,9 @@ const Appointment = new Schema(
         name: String,
         date_time: [{
             date: String, 
-            time: [String] 
+            time: String,
+            reason: String
         }],
-        reason: String
     },
     { timestamps: true },
 )

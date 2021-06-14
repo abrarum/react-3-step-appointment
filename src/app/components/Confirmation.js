@@ -15,7 +15,7 @@ export default class Confirmation extends React.Component {
     updateAppointment = async (reason) => {
         // updates the appointment
         const { mentorSelected, dateSelected, timeSelected } = this.props
-        const payload = { name: mentorSelected, date_time: [ {date: dateSelected, time: [timeSelected]} ], reason: reason }
+        const payload = { name: mentorSelected, date_time: [ {date: dateSelected, time: timeSelected, reason: reason} ] }
 
         await api.updateAppointmentByName(mentorSelected, payload).then(res => {
             this.makeAlert()
@@ -34,7 +34,7 @@ export default class Confirmation extends React.Component {
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                     <label htmlFor="exampleFormControlTextarea1">Reason: </label>
-                    <textarea onChange={this.handle} className="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
                 </div>
                 <div> 
                     <span>Are you sure about this appointment?</span>

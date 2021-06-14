@@ -36,6 +36,8 @@ let updateAppointment = async (req, res) => {
     console.log("inside updateAppointment!!!")
     const body = req.body
 
+    console.log("bodyaaaa", body)
+
     if (!body) {
         return res.status(400).json({
             success: false,
@@ -48,8 +50,9 @@ let updateAppointment = async (req, res) => {
         if (!appointment) {
             createAppointment(req, res)
         } else {
-            let index = appointment.date_time.findIndex((i) => i.date === body.date_time[0].date)
-            index !== -1 ? appointment.date_time[index].time.push(body.date_time[0].time[0]) : appointment.date_time.push( body.date_time[0])
+            appointment.date_time.push(body.date_time[0])
+            //let index = appointment.date_time.findIndex((i) => i.date === body.date_time[0].date)
+            //index !== -1 ? appointment.date_time[index].time.push(body.date_time[0].time[0]) : appointment.date_time.push( body.date_time[0])
 
         appointment
         .save()
