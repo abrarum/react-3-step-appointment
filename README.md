@@ -16,17 +16,17 @@ database can be accessed
 
 ### Notes
 1. Tech stack:
-    <> Frontend: React.js
-    <> Backend / Server: Node.js / Express.js
-    <> Database: Mongodb / Mongoose
-    <> Libraries: react-calendar / react-step-wizard ...
+    - Frontend: React.js
+    - Backend / Server: Node.js / Express.js
+    - Database: Mongodb / Mongoose
+    - Libraries: react-calendar / react-step-wizard ...
 2. Components:
-    <> StepperBox: A parent component, resides a stepper wizard. Manages the entire app state and communicates with other components via props
-    <> SelectMentor: A child component, resides a select component.
-    <> Scheduling: A component that manages 2 other components - MeetCalendar and Availability
-        <> MeetCalendar: resides a react-calendar and the availability dates
-        <> Availability: resides availability timings for a particular date
-    <> Confirmation: A child component, resides a reason textbox and confirmation details.
+    - StepperBox: A parent component, resides a stepper wizard. Manages the entire app state and communicates with other components via props
+    - SelectMentor: A child component, resides a select component.
+    - Scheduling: A component that manages 2 other components - MeetCalendar and Availability
+        - MeetCalendar: resides a react-calendar and the availability dates
+        - Availability: resides availability timings for a particular date
+    - Confirmation: A child component, resides a reason textbox and confirmation details.
 2. Due to time constraints, I avoided adding any CSS rules (apart from one) OR any tests but I am open to discussion for its implementation.
 3. I have used class based components (top-down) strategy as an architecture for data flow instead of the functional hook based components.
 
