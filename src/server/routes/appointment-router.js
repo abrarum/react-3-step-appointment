@@ -1,13 +1,12 @@
-const express = require('express')
+const express = require("express");
 
-const AppointmentCtrl = require('../controllers/appointment-ctrl')
+const AppointmentCtrl = require("../controllers/appointment-ctrl");
 
-const router = express.Router()
+const router = express.Router();
 
-router.post('/appointment', AppointmentCtrl.createAppointment)
-router.get('/appointment/:name', AppointmentCtrl.getAppointmentByName)
-router.get('/appointments', AppointmentCtrl.getAppointments)
-router.put('/appointment/:name', AppointmentCtrl.updateAppointment)
+router.post("/appointment", AppointmentCtrl.createAppointment);
+router.get("/appointment/:name", AppointmentCtrl.getAppointmentByName);
+router.get("/appointments", AppointmentCtrl.getAppointments);
+router.put("/appointment/:name", AppointmentCtrl.updateAppointment);
 
-
-module.exports = router
+module.exports = router;
