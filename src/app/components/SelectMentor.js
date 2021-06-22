@@ -32,17 +32,17 @@ export default class SelectMentor extends React.Component {
 
   render() {
     return (
-      <div>
-        <select
-          className="form-select"
-          aria-label={this.props.mentorSelected}
-          defaultValue="Select a Mentor"
-          onChange={this.handleMentorChange}
-        >
-          <option>Select a mentor</option>
-          {this.mentorListGen()}
-        </select>
-      </div>
+      <div className="d-flex justify-content-center min-vw-100 min-vh-100">
+          <select
+            id="floatingSelect"
+            className="form-select align-self-center mb-3 w-50"
+            value={this.props.mentorSelected}
+            onChange={this.handleMentorChange}
+          >
+            <option>Select a Mentor</option>
+            {this.mentorListGen()}
+          </select>
+        </div>
     );
   }
 }

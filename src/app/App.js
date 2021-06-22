@@ -1,6 +1,5 @@
-import "./index.css";
 import React from "react";
-import "@fontsource/roboto";
+import './App.scss';
 
 //components
 import StepperBox from "./components/StepperBox";
