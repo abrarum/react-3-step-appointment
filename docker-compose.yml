@@ -1,0 +1,31 @@
+version: "3.8"
+services:
+  mentor:
+    image: mentor
+    stdin_open: true
+    ports: 
+      - "3000:3000"
+    networks:
+      - mentor-app
+  mentor-server:
+    image: mentor-server
+    ports:
+      - "5000:5000"
+    networks:
+      - mentor-app
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - mentor-app
+    volumes:
+      - mongo-data:/data/db
+networks:
+  mentor-app:
+    driver: bridge
+volumes:
+  mongo-data:
+    driver: local

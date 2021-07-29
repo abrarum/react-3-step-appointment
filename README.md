@@ -40,3 +40,8 @@ database can be accessed
 6. Adding mobile responsiveness.
 7. Could've used Redux for state management
 8. Could've used Router for navigation but since this was just a single page application, I avoided using that.
+
+### Extras ...
+1. Use .env file to secure your api-keys e.t.c.. I am using dot-env package to import process.env variables inside node server only!
+2. To add global variables / constants, it is preferrable to use React context api else use constants.js placed in the root.
+
